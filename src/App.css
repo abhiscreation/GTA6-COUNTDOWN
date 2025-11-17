@@ -1,38 +1,198 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body, html, #root {
+  height: 100%;
+  background: black;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* --- BACKGROUND AREA --- */
+.container {
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  /* Smooth Rockstar-style gradient */
+  background: linear-gradient(
+    160deg, 
+    rgba(10, 0, 15, 0.95),
+    rgba(40, 0, 50, 0.90),
+    rgba(255, 0, 140, 0.55)
+  );
+
+  position: relative;
+  font-family: 'Anton', sans-serif;
   color: white;
+  text-align: center;
+  animation: fadeIn 1.5s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+/* Soft neon scenic background image */
+.neon-layer {
+  position: absolute;
+  inset: 0;
+  background: url("../public/gta6_bg.jpg") center/cover no-repeat;
+  opacity: 0.32;
+  filter: blur(1.5px) brightness(0.75);
+  z-index: 0;
 }
 
-@keyframes App-logo-spin {
+/* --- TEXT --- */
+.color-shift {
+  background: linear-gradient(90deg, #ff00cc, #ff8800, #00eaff, #cc00ff);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gtaColorShift 6s ease-in-out infinite;
+}
+
+@keyframes gtaColorShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.release-date {
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+/* GTA VI Title */
+.title {
+  font-size: 4.2rem;
+  color: #ff8edd;
+  letter-spacing: 1px;
+  font-family: 'Pacifico', cursive;
+
+  text-shadow:
+    0 0 18px #ff4fcc,
+    0 0 36px #ff77e9,
+    0 0 65px rgba(255, 130, 255, 0.9);
+
+  z-index: 2;
+  animation: neonPulse 4s infinite ease-in-out;
+}
+
+/* Sub heading */
+.subtitle {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  font-size: 1.6rem;
+  color: #9ff8ff;
+
+  text-shadow:
+    0 0 12px #00eaff,
+    0 0 22px rgba(0, 255, 255, 0.6);
+
+  z-index: 2;
+}
+
+/* --- COUNTDOWN SECTION --- */
+.countdown {
+  display: flex;
+  gap: 40px;
+  z-index: 2;
+  padding-top: 40px;
+}
+
+.time-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  padding: 18px 22px;
+  width: 120px;            /* Increased width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Perfect center alignment */
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
+}
+
+.time-box span {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  color: #fff;
+}
+
+.time-box p {
+  margin-top: 6px;
+  font-size: 1rem;
+  color: #ffd3ff;
+}
+
+/* --- FOOTER --- */
+.footer {
+  margin-top: 50px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #fcdfff;
+  opacity: 0.85;
+
+  text-shadow:
+    0 0 12px #ff99ff,
+    0 0 20px rgba(255, 200, 255, 0.5);
+
+  z-index: 2;
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9;
+  }
+  50% {
+    text-shadow: 0 0 40px #ff77e9, 0 0 80px #ffa7ff;
+  }
+  100% {
+    text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9;
+  }
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+/* Rockstar-style bold gradient text */
+.release-title {
+  font-size: 4.8rem;
+  font-weight: 800;
+  margin: 0;
+
+  background: linear-gradient(180deg, #ff6a7a, #ff9462, #ffcd62);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  z-index: 3;
+  animation: fadeIn 1.2s ease-out;
+}
+
+/* space for the logo */
+.logo-space {
+  margin-bottom: 40px;
+}
+
+.gta-logo {
+  height: 140px;
+  filter: drop-shadow(0 0 15px rgba(255, 150, 255, 0.5));
 }
