@@ -1,37 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap');
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html, #root {
-  height: 100%;
+/* Allow scrolling everywhere */
+html, body, #root {
+  min-height: 100%;
   background: black;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: 'Anton', sans-serif;
 }
 
+/* MAIN WRAPPER */
 .container {
   min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px 15px;
+  justify-content: flex-start;
+  padding: 100px 15px 80px;  /* top/bottom space for mobile */
   position: relative;
+
   background: linear-gradient(160deg, 
     rgba(10, 0, 15, 0.98),
     rgba(40, 0, 50, 0.92),
     rgba(255, 0, 140, 0.4)
   );
+
   color: white;
   text-align: center;
 }
 
-/* Background */
+/* BACKGROUND IMAGE LAYER */
 .neon-layer {
   position: absolute;
   inset: 0;
@@ -41,30 +47,32 @@ body, html, #root {
   z-index: 0;
 }
 
-/* Logo */
+/* LOGO */
 .logo-space {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   z-index: 2;
 }
 
 .gta-logo {
-  height: clamp(70px, 20vw, 160px);
+  height: clamp(80px, 22vw, 150px);
   filter: drop-shadow(0 0 20px rgba(255, 100, 255, 0.6));
 }
 
-/* Release Date */
+/* RELEASE DATE TEXT */
 .release-date {
-  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  font-size: clamp(2.2rem, 8vw, 5rem);
   font-weight: 900;
   letter-spacing: 3px;
-  line-height: 1.1;
-  margin: 15px 0;
+  line-height: 1.15;
+  margin: 10px 0 20px;
   z-index: 2;
+
   background: linear-gradient(90deg, #ff00cc, #ff8800, #00eaff, #cc00ff);
   background-size: 400%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
   animation: gtaColorShift 7s ease-in-out infinite;
 }
 
@@ -73,16 +81,19 @@ body, html, #root {
   50% { background-position: 100% 50%; }
 }
 
-/* COUNTDOWN — FORCED ONE LINE + PERFECT CENTERING */
+/* COUNTDOWN WRAPPER */
 .countdown {
   display: flex;
   flex-wrap: nowrap;
-  gap: clamp(10px, 3vw, 40px);
+  gap: clamp(10px, 3vw, 35px);
   justify-content: center;
-  margin-top: 30px;
+
+  margin-top: 20px;
   padding: 0 10px;
+
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+
   scrollbar-width: none;
   z-index: 2;
 }
@@ -91,59 +102,67 @@ body, html, #root {
   display: none;
 }
 
+/* INDIVIDUAL TIME BOX */
 .time-box {
   flex: 0 0 auto;
-  min-width: 88px;
-  width: clamp(88px, 22vw, 140px);
+  min-width: 80px;
+  width: clamp(80px, 22vw, 130px);
+
   background: rgba(255, 255, 255, 0.12);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
-  padding: 20px 8px;
+  padding: 18px 6px;
+
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(255, 0, 200, 0.25);
+
   transition: all 0.3s ease;
 
-  /* Critical: Force perfect vertical + horizontal centering */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .time-box:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   border-color: #ff00ff;
   box-shadow: 0 15px 40px rgba(255, 0, 200, 0.4);
 }
 
-/* The number — 365 now perfectly centered */
+/* COUNTDOWN NUMBER */
 .time-box span {
-  font-size: clamp(2.3rem, 8vw, 4.2rem);
+  font-size: clamp(1.8rem, 7vw, 3.8rem);
   font-weight: 900;
   line-height: 1;
   height: 1.2em;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Label */
+/* LABEL BELOW NUMBER */
 .time-box p {
-  margin-top: 10px;
-  font-size: clamp(0.8rem, 2.3vw, 1.1rem);
+  margin-top: 8px;
+  font-size: clamp(0.65rem, 2vw, 1rem);
   color: #ffd0ff;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   font-weight: 600;
 }
 
-/* Finished state */
+/* END SCREEN TITLE */
 .title {
-  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-size: clamp(3rem, 11vw, 6rem);
   font-family: 'Pacifico', cursive;
   color: #ff8edd;
-  text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9, 0 0 80px rgba(255,100,255,0.9);
+
+  text-shadow: 
+    0 0 20px #ff4fcc,
+    0 0 40px #ff77e9,
+    0 0 80px rgba(255,100,255,0.9);
+
   animation: neonPulse 3s infinite ease-in-out;
   z-index: 2;
 }
@@ -153,16 +172,36 @@ body, html, #root {
   50% { text-shadow: 0 0 50px #ff77e9, 0 0 100px #ffa7ff; }
 }
 
-/* Tiny phones fix */
-@media (max-width: 380px) {
+/* EXTRA SMALL MOBILES (iPhone SE / old Android) */
+@media (max-width: 360px) {
+
+  .container {
+    padding-top: 90px;
+  }
+
+  .gta-logo {
+    height: 80px;
+  }
+
+  .release-date {
+    font-size: 1.8rem;
+  }
+
   .time-box {
-    min-width: 76px;
-    padding: 16px 6px;
+    min-width: 65px;
+    width: 65px;
+    padding: 14px 4px;
   }
+
   .time-box span {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
+
+  .time-box p {
+    font-size: 0.55rem;
+  }
+
   .countdown {
-    gap: 8px;
+    gap: 6px;
   }
 }
