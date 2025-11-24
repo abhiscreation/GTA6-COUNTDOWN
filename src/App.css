@@ -20,7 +20,7 @@ body, html, #root {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 15px;
   position: relative;
   background: linear-gradient(160deg, 
     rgba(10, 0, 15, 0.98),
@@ -29,9 +29,9 @@ body, html, #root {
   );
   color: white;
   text-align: center;
-  animation: fadeIn 1.8s ease-out;
 }
 
+/* Background */
 .neon-layer {
   position: absolute;
   inset: 0;
@@ -41,27 +41,25 @@ body, html, #root {
   z-index: 0;
 }
 
-/* LOGO */
+/* Logo */
 .logo-space {
   margin-bottom: 20px;
   z-index: 2;
 }
 
 .gta-logo {
-  height: clamp(80px, 18vw, 160px);
-  max-width: 90vw;
+  height: clamp(70px, 20vw, 160px);
   filter: drop-shadow(0 0 20px rgba(255, 100, 255, 0.6));
 }
 
-/* RELEASE DATE TEXT */
+/* Release Date */
 .release-date {
   font-size: clamp(2.8rem, 10vw, 6.5rem);
   font-weight: 900;
   letter-spacing: 3px;
   line-height: 1.1;
-  margin: 20px 0;
+  margin: 15px 0;
   z-index: 2;
-  
   background: linear-gradient(90deg, #ff00cc, #ff8800, #00eaff, #cc00ff);
   background-size: 400%;
   -webkit-background-clip: text;
@@ -75,58 +73,56 @@ body, html, #root {
   50% { background-position: 100% 50%; }
 }
 
-/* COUNTDOWN — FORCED ONE LINE ON MOBILE */
+/* COUNTDOWN — FORCED ONE LINE + PERFECT CENTERING */
 .countdown {
   display: flex;
-  gap: clamp(12px, 3.5vw, 40px);
+  flex-wrap: nowrap;
+  gap: clamp(10px, 3vw, 40px);
   justify-content: center;
-  z-index: 2;
   margin-top: 30px;
   padding: 0 10px;
-  
-  /* Force single line + horizontal scroll only on tiny screens */
-  flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  z-index: 2;
 }
 
 .countdown::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none;
 }
 
-/* EACH TIME BOX — PERFECT CENTER ALIGNMENT */
 .time-box {
+  flex: 0 0 auto;
+  min-width: 88px;
+  width: clamp(88px, 22vw, 140px);
   background: rgba(255, 255, 255, 0.12);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
-  padding: clamp(16px, 5vw, 28px) clamp(14px, 4vw, 30px);
-  min-width: 92px;
-  flex: 0 0 auto;
-  
+  padding: 20px 8px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(255, 0, 200, 0.25);
+  transition: all 0.3s ease;
+
+  /* Critical: Force perfect vertical + horizontal centering */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(255, 0, 200, 0.25);
-  transition: all 0.3s ease;
 }
 
 .time-box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(255, 0, 200, 0.4);
+  transform: translateY(-10px);
   border-color: #ff00ff;
+  box-shadow: 0 15px 40px rgba(255, 0, 200, 0.4);
 }
 
-/* Number — perfectly centered even if 365 */
+/* The number — 365 now perfectly centered */
 .time-box span {
-  font-size: clamp(2.2rem, 8vw, 4rem);
+  font-size: clamp(2.3rem, 8vw, 4.2rem);
   font-weight: 900;
   line-height: 1;
-  min-height: 1.2em;           /* Ensures consistent height */
+  height: 1.2em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,23 +130,20 @@ body, html, #root {
 
 /* Label */
 .time-box p {
-  margin-top: 8px;
-  font-size: clamp(0.85rem, 2.4vw, 1.1rem);
+  margin-top: 10px;
+  font-size: clamp(0.8rem, 2.3vw, 1.1rem);
   color: #ffd0ff;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  line-height: 1;
+  font-weight: 600;
 }
 
-/* FINISHED STATE */
+/* Finished state */
 .title {
   font-size: clamp(3.5rem, 12vw, 7rem);
   font-family: 'Pacifico', cursive;
   color: #ff8edd;
-  text-shadow: 
-    0 0 20px #ff4fcc,
-    0 0 40px #ff77e9,
-    0 0 80px rgba(255, 100, 255, 0.9);
+  text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9, 0 0 80px rgba(255,100,255,0.9);
   animation: neonPulse 3s infinite ease-in-out;
   z-index: 2;
 }
@@ -160,32 +153,16 @@ body, html, #root {
   50% { text-shadow: 0 0 50px #ff77e9, 0 0 100px #ffa7ff; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Extra small phones — still one line */
-@media (max-width: 480px) {
-  .countdown {
-    gap: 12px;
-    padding: 0 5px;
-  }
-  
+/* Tiny phones fix */
+@media (max-width: 380px) {
   .time-box {
-    min-width: 78px;
-    padding: 14px 10px;
+    min-width: 76px;
+    padding: 16px 6px;
   }
-  
   .time-box span {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
-  
-  .gta-logo {
-    height: 70px;
-  }
-  
-  .container {
-    padding-top: 12vh;
+  .countdown {
+    gap: 8px;
   }
 }
