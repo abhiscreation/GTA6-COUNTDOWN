@@ -174,7 +174,7 @@ body { overflow-x: hidden; }
   -webkit-text-fill-color: transparent;
   filter: blur(22px);
   opacity: 0.28;
-  animation: cinematicFlow 5s ease-in-out infinite reverse;
+  animation: cinematicFlow 26s ease-in-out infinite reverse;
   z-index: -1;
 }
 /* COUNTDOWN - ULTRA CLEAN DESIGN */
