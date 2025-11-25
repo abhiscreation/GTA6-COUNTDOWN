@@ -42,24 +42,141 @@ body { overflow-x: hidden; }
 
 /* Release date text - clean gradient */
 .release-date {
-  font-size: clamp(2.5rem, 9vw, 6rem);
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
   font-weight: 900;
-  letter-spacing: 5px;
-  line-height: 1.1;
-  margin: 20px 0 50px;
+  letter-spacing: 8px;
+  line-height: 1.12;
+  margin: 50px 0 90px;
+  position: relative;
+  text-transform: uppercase;
   z-index: 2;
-  background: linear-gradient(90deg, #ff00aa, #ff6600, #00ffff, #ff00ff);
+
+  /* Premium cinematic gradient — muted but rich */
+  background: linear-gradient(
+    100deg,
+    #ff6b6b 0%,
+    #ffa38c 18%,
+    #ffc78c 35%,
+    #d8b4ff 52%,
+    #9c8cff 72%,
+    #6b9fff 90%,
+    #87efff 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+
+  /* Super smooth, barely noticeable flow — pure luxury */
+  animation: cinematicFlow 24s ease-in-out infinite;
+
+  /* Subtle inner glow + outer halo */
+  text-shadow: 
+    0 0 40px rgba(255, 140, 180, 0.3),
+    0 0 80px rgba(140, 120, 255, 0.15);
+
+  /* Breathing depth (extremely subtle) */
+  animation: 
+    cinematicFlow 24s ease-in-out infinite,
+    breathe 12s ease-in-out infinite;
+}
+
+/* Ultra-slow horizontal flow — feels alive but professional */
+@keyframes cinematicFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Micro-breathing — makes it feel premium & organic */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1) translateY(0px);
+    filter: brightness(1) saturate(1.1);
+  }
+  50% { 
+    transform: scale(1.015) translateY(-4px);
+    filter: brightness(1.08) saturate(1.2);
+  }
+}
+
+/* Optional: faint blurred duplicate layer for insane depth (AAA studios use this) */
+.release-date {
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: 8px;
+  line-height: 1.12;
+  margin: 50px 0 90px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+
+  /* Premium cinematic gradient — muted but rich */
+  background: linear-gradient(
+    100deg,
+    #ff6b6b 0%,
+    #ffa38c 18%,
+    #ffc78c 35%,
+    #d8b4ff 52%,
+    #9c8cff 72%,
+    #6b9fff 90%,
+    #87efff 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+
+  /* Super smooth, barely noticeable flow — pure luxury */
+  animation: cinematicFlow 24s ease-in-out infinite;
+
+  /* Subtle inner glow + outer halo */
+  text-shadow: 
+    0 0 40px rgba(255, 140, 180, 0.3),
+    0 0 80px rgba(140, 120, 255, 0.15);
+
+  /* Breathing depth (extremely subtle) */
+  animation: 
+    cinematicFlow 24s ease-in-out infinite,
+    breathe 12s ease-in-out infinite;
+}
+
+/* Ultra-slow horizontal flow — feels alive but professional */
+@keyframes cinematicFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Micro-breathing — makes it feel premium & organic */
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1) translateY(0px);
+    filter: brightness(1) saturate(1.1);
+  }
+  50% { 
+    transform: scale(1.015) translateY(-4px);
+    filter: brightness(1.08) saturate(1.2);
+  }
+}
+
+/* Optional: faint blurred duplicate layer for insane depth (AAA studios use this) */
+.release-date::before {
+  content: "Coming November 19 2026";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, #ff8c9c, #b49fff, #8ccfff);
   background-size: 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shift 10s linear infinite;
+  filter: blur(22px);
+  opacity: 0.28;
+  animation: cinematicFlow 5s ease-in-out infinite reverse;
+  z-index: -1;
 }
-@keyframes shift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
-
 /* COUNTDOWN - ULTRA CLEAN DESIGN */
 .countdown {
   display: flex;
