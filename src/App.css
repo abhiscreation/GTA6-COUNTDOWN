@@ -7,7 +7,6 @@
   box-sizing: border-box;
 }
 
-/* Allow scrolling everywhere */
 html, body, #root {
   min-height: 100%;
   background: black;
@@ -24,15 +23,13 @@ html, body, #root {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 100px 15px 80px;  /* top/bottom space for mobile */
+  padding: 100px 15px 80px;
   position: relative;
-
   background: linear-gradient(160deg, 
     rgba(10, 0, 15, 0.98),
     rgba(40, 0, 50, 0.92),
     rgba(255, 0, 140, 0.4)
   );
-
   color: white;
   text-align: center;
 }
@@ -66,13 +63,11 @@ html, body, #root {
   line-height: 1.15;
   margin: 10px 0 20px;
   z-index: 2;
-
   background: linear-gradient(90deg, #ff00cc, #ff8800, #00eaff, #cc00ff);
   background-size: 400%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-
   animation: gtaColorShift 7s ease-in-out infinite;
 }
 
@@ -81,19 +76,16 @@ html, body, #root {
   50% { background-position: 100% 50%; }
 }
 
-/* COUNTDOWN WRAPPER */
+/* COUNTDOWN WRAPPER – ONE LINE */
 .countdown {
   display: flex;
   flex-wrap: nowrap;
   gap: clamp(10px, 3vw, 35px);
   justify-content: center;
-
   margin-top: 20px;
   padding: 0 10px;
-
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-
   scrollbar-width: none;
   z-index: 2;
 }
@@ -102,7 +94,7 @@ html, body, #root {
   display: none;
 }
 
-/* INDIVIDUAL TIME BOX */
+/* INDIVIDUAL TIME BOX – NO UGLY RECTANGLE ON HOVER */
 .time-box {
   flex: 0 0 auto;
   min-width: 80px;
@@ -114,9 +106,14 @@ html, body, #root {
   padding: 18px 6px;
 
   backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(255, 0, 200, 0.25);
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
 
-  transition: all 0.3s ease;
+  /* THIS FIXES THE GRAY/WHITE RECTANGLE ON HOVER */
+  transform: translateZ(0);           /* Forces GPU layer */
+  will-change: transform, box-shadow, border-color;
+
+  box-shadow: 0 8px 32px rgba(255, 0, 200, 0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 
   display: flex;
   flex-direction: column;
@@ -124,10 +121,12 @@ html, body, #root {
   justify-content: center;
 }
 
+/* CLEAN HOVER EFFECT – NO MORE RECTANGLE */
 .time-box:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
   border-color: #ff00ff;
-  box-shadow: 0 15px 40px rgba(255, 0, 200, 0.4);
+  box-shadow: 0 20px 50px rgba(255, 0, 200, 0.45);
+  background: rgba(255, 255, 255, 0.18); /* Slight brighten instead of rectangle */
 }
 
 /* COUNTDOWN NUMBER */
@@ -136,13 +135,12 @@ html, body, #root {
   font-weight: 900;
   line-height: 1;
   height: 1.2em;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* LABEL BELOW NUMBER */
+/* LABEL */
 .time-box p {
   margin-top: 8px;
   font-size: clamp(0.65rem, 2vw, 1rem);
@@ -157,51 +155,98 @@ html, body, #root {
   font-size: clamp(3rem, 11vw, 6rem);
   font-family: 'Pacifico', cursive;
   color: #ff8edd;
-
   text-shadow: 
     0 0 20px #ff4fcc,
     0 0 40px #ff77e9,
     0 0 80px rgba(255,100,255,0.9);
-
   animation: neonPulse 3s infinite ease-in-out;
   z-index: 2;
 }
 
 @keyframes neonPulse {
   0%, 100% { text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9; }
-  50% { text-shadow: 0 0 50px #ff77e9, 0 0 100px #ffa7ff; }
+  50% { text-shadow: 0 0 50px #ff00ff, 0 0 100px #ff77ff; }
 }
 
-/* EXTRA SMALL MOBILES (iPhone SE / old Android) */
+/* TINY PHONES */
 @media (max-width: 360px) {
+  .container { padding-top: 90px; }
+  .time-box { min-width: 65px; width: 65px; padding: 14px 4px; }
+  .time-box span { font-size: 1.5rem; }
+  .time-box p { font-size: 0.55rem; }
+  .countdown { gap: 6px; }
+}
 
-  .container {
-    padding-top: 90px;
+/* ROCKSTAR-STYLE LOADING SCREEN */
+/* ROCKSTAR LOADING SCREEN — EXACT GTA STYLE */
+.rockstar-loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: white;
+  text-align: center;
+  font-family: 'Pricedown', 'Anton', sans-serif;
+  
+  /* Start completely invisible */
+  opacity: 0;
+  animation: 
+    fadeInText 1.8s ease-out forwards,
+    fadeOutScreen 1s ease-out 3.2s forwards;
+}
+
+.loader-text {
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: 5px;
+  line-height: 1.1;
+  
+  background: linear-gradient(90deg, #ff00aa, #ff6600, #ff00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  text-shadow: 0 0 40px rgba(255, 0, 200, 0.8);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: textGlow 4s ease-in-out infinite, fadeInUp 2s ease-out forwards;
+}
+
+.loader-subtext {
+  margin-top: 40px;
+  font-size: 1.4rem;
+  letter-spacing: 8px;
+  opacity: 0;
+  animation: fadeInUp 2s ease-out 0.8s forwards, pulse 2.5s infinite 2.8s;
+}
+
+/* Text fades in + moves up */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  .gta-logo {
-    height: 80px;
-  }
+/* Pulsing glow */
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 40px rgba(255, 0, 200, 0.8); }
+  50% { text-shadow: 0 0 80px rgba(255, 50, 200, 1); }
+}
 
-  .release-date {
-    font-size: 1.8rem;
-  }
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
 
-  .time-box {
-    min-width: 65px;
-    width: 65px;
-    padding: 14px 4px;
-  }
-
-  .time-box span {
-    font-size: 1.5rem;
-  }
-
-  .time-box p {
-    font-size: 0.55rem;
-  }
-
-  .countdown {
-    gap: 6px;
+/* Entire screen fades out at the end */
+@keyframes fadeOutScreen {
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }
