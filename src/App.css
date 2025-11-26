@@ -2,23 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 /* Clean reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  background: #000;
-  font-family: 'Anton', sans-serif;
-}
-
-body {
-  overflow-x: hidden;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { height: 100%; background: #000; font-family: 'Anton', sans-serif; }
+body { overflow-x: hidden; }
 
 /* Main layout */
 .container {
@@ -45,17 +31,12 @@ body {
 }
 
 /* Logo */
-.logo-space {
-  margin-bottom: 40px;
-  z-index: 2;
-}
-
+.logo-space { margin-bottom: 40px; z-index: 2; }
 .gta-logo {
   height: clamp(100px, 25vw, 170px);
   filter: drop-shadow(0 0 15px rgba(255, 105, 255, 0.5));
 }
-
-/* PROFESSIONAL & HYPNOTIC TEXT EFFECT - BREATHE EFFECT REMOVED */
+/* CLEAN, ELEGANT & PERFECTLY MATCHED WITH BG */
 .release-date {
   font-size: clamp(3.4rem, 12vw, 8.5rem);
   font-weight: 900;
@@ -66,50 +47,36 @@ body {
   text-transform: uppercase;
   z-index: 2;
 
-  background: linear-gradient(100deg, #ff6b6b, #ffa38c 18%, #ffc78c 35%, #d8b4ff 52%, #9c8cff 72%, #6b9fff 90%, #87efff);
+  /* New elegant sunset-neon palette – bilkul background ke saath blend karega */
+  background: linear-gradient(105deg,
+    #ff8c8c 0%,    /* soft coral */
+    #ffb380 18%,   /* warm peach */
+    #ffd4a3 32%,   /* creamy gold */
+    #c8b8ff 50%,   /* light lavender */
+    #9bb8ff 70%,   /* soft sky blue */
+    #87e8ff 100%   /* mint cyan */
+  );
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* Only smooth color flow - no breathing, no scale, no movement */
-  animation: cinematicFlow 8s ease-in-out infinite;
+  /* Smooth & classy speed – tu pasand kare toh 12s bhi kar sakta hai */
+  animation: cinematicFlow 16s ease-in-out infinite;
 
-  text-shadow: 0 0 40px rgba(255, 140, 180, 0.3),
-    0 0 80px rgba(140, 120, 255, 0.15);
+  /* Subtle glow jo dark bg pe bilkul perfect lagega */
+  text-shadow: 
+    0 0 30px rgba(255, 160, 180, 0.25),
+    0 0 70px rgba(140, 160, 255, 0.18);
 }
 
 @keyframes cinematicFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Subtle blurred depth layer (makes it look insanely premium) */
-.release-date::before {
-  content: "Coming November 19 2026";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, #ff8c9c, #b49fff, #8ccfff);
-  background-size: 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: blur(22px);
-  opacity: 0.28;
-  animation: cinematicFlow 16s ease-in-out infinite reverse;
-  z-index: -1;
-}
-
-/* COUNTDOWN - ULTRA CLEAN DESIGN */
+/* COUNTDOWN */
 .countdown {
   display: flex;
   gap: clamp(20px, 5vw, 50px);
@@ -118,43 +85,46 @@ body {
   justify-content: center;
 }
 
+/* COUNTDOWN BOXES — AB BILKUL PERFECT CENTERED */
 .time-box {
-  width: clamp(100px, 25vw, 150px);
-  height: clamp(100px, 25vw, 150px);
+  width: clamp(110px, 26vw, 160px);
+  height: clamp(110px, 26vw, 160px);
   background: rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  justify-content: center;        /* ← Yehi main cheez hai */
+  padding: 12px 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   user-select: none;
   -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s ease;
 }
 
 .time-box span {
-  font-size: clamp(2.5rem, 9vw, 5rem);
+  font-size: clamp(2.8rem, 10vw, 5.8rem);
   font-weight: 900;
   line-height: 1;
   color: #ffffff;
-  text-shadow: 0 0 15px rgba(255, 100, 255, 0.6);
+  text-shadow: 0 0 20px rgba(255, 100, 255, 0.7);
+  margin-bottom: 6px;             /* Number aur label ke beech perfect gap */
 }
 
 .time-box p {
-  margin-top: 10px;
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  margin: 0;
+  font-size: clamp(0.95rem, 2.8vw, 1.3rem);
   color: #ff99ff;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  font-weight: 500;
-  opacity: 0.9;
+  font-weight: 600;
+  opacity: 0.95;
 }
 
-/* When game is released */
+/* Released title */
 .title {
   font-size: clamp(4.5rem, 14vw, 8rem);
   font-weight: 900;
@@ -168,19 +138,26 @@ body {
 
 /* Mobile */
 @media (max-width: 480px) {
-  .container {
-    padding-top: 100px;
-  }
-
-  .countdown {
-    gap: 15px;
-  }
-
+  .container { padding-top: 100px; }
+  .countdown { gap: 16px; }
+  
   .time-box {
-    width: 85px;
-    height: 85px;
+    width: 92px;
+    height: 92px;
+    border-radius: 20px;
+    padding: 8px 4px;
   }
-
+  
+  .time-box span {
+    font-size: 2.4rem;
+    margin-bottom: 4px;
+  }
+  
+  .time-box p {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+  
   .release-date {
     letter-spacing: 5px;
     margin: 30px 0 60px;

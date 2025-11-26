@@ -2,21 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import viLogo from "./Assets/vi.png";
 
-// Loading Screen Component
-const LoadingScreen = () => {
-  return (
-    <div className="rockstar-loader">
-      <div className="loader-text">
-        Take me back to<br />Vice City...
-      </div>
-      <div className="loader-subtext">Loading the dream</div>
-    </div>
-  );
-};
-
 const App = () => {
-  // ALL HOOKS MUST BE AT THE TOP — NO CONDITIONALS BEFORE THEM!
-  const [isLoading, setIsLoading] = useState(true);
+
   const [timeLeft, setTimeLeft] = useState(null);
 
   const releaseDate = new Date("November 19, 2026 00:00:00").getTime();
@@ -49,19 +36,6 @@ const App = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, [calculateTime]);
-
-  // Hide loading screen after 3.8 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // SHOW LOADING SCREEN FIRST
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
 
   // COUNTDOWN FINISHED
   if (!timeLeft) {
