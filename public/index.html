@@ -1,17 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link href="https://fonts.cdnfonts.com/css/pricedown" rel="stylesheet">
-  <head>
-    <meta charset="utf-8" />
-    <title>GTA 6 Countdown</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GTA VI | Rockstar Games</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #fff;
+      background: #000;
+      overflow-x: hidden;
+    }
+    section {
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.65);
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 90%;
+    }
+    h1 {
+      font-size: 9vw;
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #FFB13D, #FF6B6B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      font-size: 1.8vw;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    .btn {
+      padding: 15px 40px;
+      background: transparent;
+      border: 3px solid #FFB13D;
+      color: #fff;
+      font-size: 1.4vw;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+    .btn:hover {
+      background: #FFB13D;
+      color: #000;
+    }
+    .logo {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      z-index: 10;
+    }
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 999;
+      transition: all 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(0,0,0,0.9);
+      padding: 15px 50px;
+    }
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-    <!-- Favicon optional -->
-    <link rel="icon" href="./favicon.png" />
-  </head>
+    /* Section Backgrounds – replace with real trailer screenshots when available */
+    #sec1 { background: url('https://images.unsplash.com/photo-1612285298008-3c7f8e8aa8c8?auto=format&fit=crop&q=80') center/cover no-repeat; }
+    #sec2 { background: url('https://images.unsplash.com/photo-1585208798174-6cedd74e0198?auto=format&fit=crop&q=80') center/cover no-repeat; }
+    #sec3 { background: linear-gradient(135deg, #ff6b6b, #4ecdc4); }
+    #sec4 { background: url('https://images.unsplash.com/photo-1550745162-039e9f0e1e23?auto=format&fit=crop&q=80') center/cover no-repeat; }
+    #sec5 { background: #000; }
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+    @media (max-width: 768px) {
+      h1 { font-size: 14vw; }
+      p { font-size: 4vw; }
+      .btn { font-size: 3.5vw; padding: 12px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Rockstar Logo -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Rockstar_Games_Logo.svg/1280px-Rockstar_Games_Logo.svg.png" alt="Rockstar Games" class="logo">
+
+  <!-- Navigation -->
+  <div class="nav" id="navbar">
+    <a href="#">Grand Theft Auto VI</a>
+    <a href="#">Coming 2026</a>
+  </div>
+
+  <!-- Section 1 – Hero / Title -->
+  <section id="sec1">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Grand Theft Auto VI</h1>
+      <p>Coming 2026 to PlayStation 5 and Xbox Series X|S</p>
+      <button class="btn">Watch Trailer</button>
+    </div>
+  </section>
+
+  <!-- Section 2 – Vice City Reveal -->
+  <section id="sec2">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Welcome to Vice City</h1>
+      <p>The State of Leonida. Bigger, bolder, and more dangerous than ever.</p>
+      <button class="btn">Learn More</button>
+    </div>
+  </section>
+
+  <!-- Section 3 – Characters -->
+  <section id="sec3">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Lucia & Jason</h1>
+      <p>Two criminals. One impossible heist. A story of trust, betrayal, and neon-soaked chaos.</p>
+    </div>
+  </section>
+
+  <!-- Section 4 – World -->
+  <section id="sec4">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>The Largest, Most Immersive Evolution</h1>
+      <p>Dynamic weather, living crowds, unprecedented detail.</p>
+      <button class="btn">Pre-Order</button>
+    </div>
+  </section>
+
+  <!-- Section 5 – Footer / Newsletter -->
+  <section id="sec5">
+    <div class="content">
+      <h1>Be the First to Know</h1>
+      <p>Sign up for updates, exclusive screenshots, and more.</p>
+      <input type="email" placeholder="Enter your email" style="padding:15px; width:300px; margin:20px; background:#111; border:2px solid #444; color:#fff; font-size:1.2rem;">
+      <button class="btn">Subscribe</button>
+      <br><br><br>
+      <p style="font-size:0.9rem; opacity:0.6;">© 2025 Rockstar Games. All Rights Reserved.</p>
+    </div>
+  </section>
+
+  <script>
+    // Simple navbar shrink on scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+    });
+  </script>
+</body>
 </html>
