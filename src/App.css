@@ -1,198 +1,165 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pricedown');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Clean reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { height: 100%; background: #000; font-family: 'Anton', sans-serif; }
+body { overflow-x: hidden; }
 
-body, html, #root {
-  height: 100%;
-  background: black;
-  overflow: hidden;
-}
-
-/* --- BACKGROUND AREA --- */
+/* Main layout */
 .container {
-  height: 100vh;
-  width: 100%;
+  min-height: 100vh;
+  padding: 140px 20px 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  /* Smooth Rockstar-style gradient */
-  background: linear-gradient(
-    160deg, 
-    rgba(10, 0, 15, 0.95),
-    rgba(40, 0, 50, 0.90),
-    rgba(255, 0, 140, 0.55)
-  );
-
+  justify-content: flex-start;
+  background: linear-gradient(160deg, #0a0014, #1a0028, #2d0038);
   position: relative;
-  font-family: 'Anton', sans-serif;
   color: white;
   text-align: center;
-  animation: fadeIn 1.5s ease-out;
 }
 
-/* Soft neon scenic background image */
+/* Background image - subtle */
 .neon-layer {
   position: absolute;
   inset: 0;
   background: url("../public/gta6_bg.jpg") center/cover no-repeat;
-  opacity: 0.32;
-  filter: blur(1.5px) brightness(0.75);
+  opacity: 0.3;
+  filter: blur(1px);
   z-index: 0;
 }
 
-/* --- TEXT --- */
-.color-shift {
-  background: linear-gradient(90deg, #ff00cc, #ff8800, #00eaff, #cc00ff);
-  background-size: 400% 400%;
+/* Logo */
+.logo-space { margin-bottom: 40px; z-index: 2; }
+.gta-logo {
+  height: clamp(100px, 25vw, 170px);
+  filter: drop-shadow(0 0 15px rgba(255, 105, 255, 0.5));
+}
+/* CLEAN, ELEGANT & PERFECTLY MATCHED WITH BG */
+.release-date {
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: 8px;
+  line-height: 1.12;
+  margin: 50px 0 90px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+
+  /* New elegant sunset-neon palette – bilkul background ke saath blend karega */
+  background: linear-gradient(105deg,
+    #ff8c8c 0%,    /* soft coral */
+    #ffb380 18%,   /* warm peach */
+    #ffd4a3 32%,   /* creamy gold */
+    #c8b8ff 50%,   /* light lavender */
+    #9bb8ff 70%,   /* soft sky blue */
+    #87e8ff 100%   /* mint cyan */
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gtaColorShift 6s ease-in-out infinite;
+
+  /* Smooth & classy speed – tu pasand kare toh 12s bhi kar sakta hai */
+  animation: cinematicFlow 16s ease-in-out infinite;
+
+  /* Subtle glow jo dark bg pe bilkul perfect lagega */
+  text-shadow: 
+    0 0 30px rgba(255, 160, 180, 0.25),
+    0 0 70px rgba(140, 160, 255, 0.18);
 }
 
-@keyframes gtaColorShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+@keyframes cinematicFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-.release-date {
-  font-size: 4.5rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  z-index: 2;
-}
-
-/* GTA VI Title */
-.title {
-  font-size: 4.2rem;
-  color: #ff8edd;
-  letter-spacing: 1px;
-  font-family: 'Pacifico', cursive;
-
-  text-shadow:
-    0 0 18px #ff4fcc,
-    0 0 36px #ff77e9,
-    0 0 65px rgba(255, 130, 255, 0.9);
-
-  z-index: 2;
-  animation: neonPulse 4s infinite ease-in-out;
-}
-
-/* Sub heading */
-.subtitle {
-  margin-top: 10px;
-  margin-bottom: 40px;
-  font-size: 1.6rem;
-  color: #9ff8ff;
-
-  text-shadow:
-    0 0 12px #00eaff,
-    0 0 22px rgba(0, 255, 255, 0.6);
-
-  z-index: 2;
-}
-
-/* --- COUNTDOWN SECTION --- */
+/* COUNTDOWN */
 .countdown {
   display: flex;
-  gap: 40px;
+  gap: clamp(20px, 5vw, 50px);
   z-index: 2;
-  padding-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
+/* COUNTDOWN BOXES — AB BILKUL PERFECT CENTERED */
 .time-box {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 15px;
-  padding: 18px 22px;
-  width: 120px;            /* Increased width */
+  width: clamp(110px, 26vw, 160px);
+  height: clamp(110px, 26vw, 160px);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   display: flex;
   flex-direction: column;
-  align-items: center;     /* Perfect center alignment */
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
+  align-items: center;
+  justify-content: center;        /* ← Yehi main cheez hai */
+  padding: 12px 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  -webkit-user-select: none;
+  transition: all 0.3s ease;
 }
 
 .time-box span {
-  font-size: clamp(2rem, 5vw, 2.7rem);
-  color: #fff;
+  font-size: clamp(2.8rem, 10vw, 5.8rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 100, 255, 0.7);
+  margin-bottom: 6px;             /* Number aur label ke beech perfect gap */
 }
 
 .time-box p {
-  margin-top: 6px;
-  font-size: 1rem;
-  color: #ffd3ff;
+  margin: 0;
+  font-size: clamp(0.95rem, 2.8vw, 1.3rem);
+  color: #ff99ff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.95;
 }
 
-/* --- FOOTER --- */
-.footer {
-  margin-top: 50px;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  color: #fcdfff;
-  opacity: 0.85;
-
-  text-shadow:
-    0 0 12px #ff99ff,
-    0 0 20px rgba(255, 200, 255, 0.5);
-
+/* Released title */
+.title {
+  font-size: clamp(4.5rem, 14vw, 8rem);
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
   z-index: 2;
 }
 
-/* --- ANIMATIONS --- */
-
-@keyframes neonPulse {
-  0% {
-    text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9;
+/* Mobile */
+@media (max-width: 480px) {
+  .container { padding-top: 100px; }
+  .countdown { gap: 16px; }
+  
+  .time-box {
+    width: 92px;
+    height: 92px;
+    border-radius: 20px;
+    padding: 8px 4px;
   }
-  50% {
-    text-shadow: 0 0 40px #ff77e9, 0 0 80px #ffa7ff;
+  
+  .time-box span {
+    font-size: 2.4rem;
+    margin-bottom: 4px;
   }
-  100% {
-    text-shadow: 0 0 20px #ff4fcc, 0 0 40px #ff77e9;
+  
+  .time-box p {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  
+  .release-date {
+    letter-spacing: 5px;
+    margin: 30px 0 60px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Rockstar-style bold gradient text */
-.release-title {
-  font-size: 4.8rem;
-  font-weight: 800;
-  margin: 0;
-
-  background: linear-gradient(180deg, #ff6a7a, #ff9462, #ffcd62);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  letter-spacing: 2px;
-  text-transform: uppercase;
-
-  z-index: 3;
-  animation: fadeIn 1.2s ease-out;
-}
-
-/* space for the logo */
-.logo-space {
-  margin-bottom: 40px;
-}
-
-.gta-logo {
-  height: 140px;
-  filter: drop-shadow(0 0 15px rgba(255, 150, 255, 0.5));
 }
